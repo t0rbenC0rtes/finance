@@ -1,0 +1,95 @@
+@use "variables" as v;
+
+.sidebar-container {
+  display: flex;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 15rem;
+  background: v.$black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 1.25rem;
+  border-radius: 0 18px 18px 0;
+  gap: 0.3125rem;
+  font-weight: 700;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+
+  .title {
+    color: v.$white;
+    padding: 20px;
+  }
+
+  .sidebar-item {
+    position: relative;
+    width: 90%;
+    text-decoration: none;
+    color: v.$gray;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 15px 20px;
+    overflow: hidden;
+    z-index: 2;
+    gap: 0.75rem;
+
+    /* Sidebar Animated Background */
+    .sidebar-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: v.$white;
+      border-left: 4px solid v.$teal;
+      border-radius: 0 8px 8px 0;
+      transform-origin: left;
+      transform: scaleX(0);
+      z-index: -1;
+    }
+
+    .sidebar-label {
+      font-size: 1rem;
+      display: block;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    &.active {
+      span {
+        color: v.$black;
+      }
+      color: v.$teal;
+    }
+  }
+  /* 🟢 Collapsed Sidebar State */
+  &.collapsed {
+    width: 80px;
+
+    .sidebar-item {
+      justify-content: center; // Centers icons
+      padding: 15px;
+    }
+
+    .sidebar-label {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  /* 🟢 Toggle Sidebar Button */
+  .toggle-sidebar {
+    position: absolute;
+    top: 50%;    
+    border: none;
+    color: v.$white;
+    padding: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: transparent;    
+  }
+}
